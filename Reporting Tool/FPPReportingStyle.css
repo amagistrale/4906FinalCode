@@ -1,0 +1,147 @@
+body {
+    background-color: rgb(246,246,246);
+}
+
+#nav{
+    position: relative; 
+    top:0; 
+    right: 0; 
+    left: 0; 
+    padding: 32px 0px 32px 0px; 
+    border-bottom: 2px solid white; 
+    background-color: rgba(33, 37, 41, 1);
+}
+
+#image{
+    position: relative
+}
+
+#opbanner{
+    width:90px; 
+    height:130px; 
+    background-color:white; 
+    position:absolute; 
+    top: 8px; 
+    left: 30px;
+}
+
+#opimage{
+    margin: 18px 0px 0px 15px;
+}
+
+#landing{
+    width: 90%; 
+    padding-right: 0.75rem; 
+    padding-left: .75rem; 
+    margin-right:auto; 
+    margin-left: auto;
+}
+
+#header{
+    color:#0475bc; 
+    margin: 15px 0px 15px 0px; 
+    font-family: Calibri, opensans, sans-serif; 
+    font-weight: 600; 
+    font-size: 2.5rem;
+}
+
+#writing{
+    font-family: Calibri, opensans, sans-serif; 
+    font-size: 1.1rem
+}
+
+#linebreak{
+    height:2px; 
+    border-width:0;
+    color:#0475bc; 
+    background-color:#0475bc
+}
+
+#formdiv{
+    width: 90%; 
+    padding-right: .75rem; 
+    padding-left: .75rem
+}
+
+#locinstructions{
+    font-family: Calibri, opensans, sans-serif; 
+    font-size: 1.3rem; 
+    text-align:center
+}
+
+#buttondiv{
+    text-align:center
+}
+
+#locbutton{
+    margin-bottom:1rem !important; 
+    cursor:pointer; 
+    display: inline-block; 
+    font-weight: 500; 
+    line-height: 2; 
+    text-align: center; 
+    vertical-align: middle; 
+    border: 1.5px solid transparent; 
+    padding: .650rem 1.25rem; 
+    border-radius: .75rem; 
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out; 
+    color: #FFFFFF; 
+    font-size: 1.25rem; 
+    background-color: #00834e; 
+    letter-spacing: 1.25px;
+}
+
+#instructions{
+    font-family: Calibri, opensans, sans-serif; 
+    font-size: 1.3rem
+}
+
+#label{
+    display: inline-block; box-sizing: border-box;
+}
+
+#input{
+    display: block; 
+    width: 100%; 
+    padding: .375rem .75rem; 
+    font-size: 1rem; 
+    font-weight: 400; 
+    line-height: 1.5; 
+    color:#212529; 
+    background-color: #FFFFFF; 
+    background-clip: padding-box; 
+    border: 1px solid #ced4da; 
+    appearance: none; 
+    border-radius: .25rem;
+}
+
+#button{
+    margin-bottom:1rem !important; 
+    cursor:pointer; 
+    display: inline-block; 
+    font-weight: 400; 
+    line-height: 1.5; 
+    text-align: center; 
+    vertical-align: middle; 
+    border: 1px solid transparent; 
+    padding: .375rem .75rem; 
+    border-radius: .25rem; 
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out; 
+    color: #FFFFFF; 
+    background-color: #00834e; 
+    letter-spacing: 1px; 
+    font-size:1rem;
+}
+
+#carletondiv{
+    width:170px; 
+    height:140px; 
+    top: 8px; 
+    left: 120px; 
+    float:right
+}
+
+#carletonimg{
+    margin: 0px 0px 0px 0px
+}
+
