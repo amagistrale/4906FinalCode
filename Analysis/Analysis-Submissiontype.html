@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+    <head> <!--This section calls to other code as reference for both the functionality and the style of the webpage.-->
+        <meta charset = 'utf-8'>
+        <meta name = 'viewport' content = 'width = device-width, initial-scale = 1'>
+        <title>FPP Maintenance Reporting Tool</title>
+
+        <!--Stylesheet-->
+        <link rel = "stylesheet" href = '/Users/annamagistrale/Desktop/GEOM_4005/Cleaned Code/FPPReportingMapStyle.css'>
+
+        <!--for mapbox-->
+        <script src='https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css' rel='stylesheet' />
+        
+        <!--for sheetrock-->
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sheetrock/1.1.4/dist/sheetrock.min.js"></script> 
+    </head>
+
+    <body>
+
+        <!--This section creates the map that the user's inputted point will then be drawn on.-->
+        <div id = 'map' onload="draw"></div>
+            <script>
+                var token = 'pk.eyJ1IjoiYW1hZ2lzdHJhbGUiLCJhIjoiY2xyanM3bTQ5MDFqMjJqcHdtem1uZmk3aiJ9.OLS4djSvledebuYH2fLFSg'
+                mapboxgl.accessToken = token;
+                var map = new mapboxgl.Map({
+                    container: 'map', // container ID
+                    style: 'mapbox://styles/amagistrale/cltgq0i0f007301qo6xuz0yfa', // style URL
+                    center: [-76.221, 45.482], // starting position 
+                    zoom: 13.5, // starting zoom
+                });
+            </script>
+
+        <!--Sheetrock method to add the user submitted data to the map created above-->
+        <div id = 'display'></div>
+        <script>
+            
+            sheetrock({
+                url: 'https://docs.google.com/spreadsheets/d/1Hi078NSl0VIJXdF16RKmzEC5ti4J0p3Zf3Nu3J7wlRg/edit#gid=1282129230', //URL to google spreadsheet
+                callback: draw   }); //runs the draw function
+
+            function draw(error, options, response) { //This function draws the point based off the data submitted by the user.
+                data=response.rows; //get the responses
+                lendata = (data.length) - 1 //find the number of responses
+                while (lendata >= 0 ){ //while there are still responses 
+                    if (data[lendata].cellsArray[10] == 'Maintenance'){ // if the complete column is not checked off
+                    new mapboxgl.Marker({color:"green"}).setLngLat([data[lendata].cellsArray[7], data[lendata].cellsArray[6]]).addTo(map).setPopup(new mapboxgl.Popup().setHTML("<p><b>Date + Time: </b></p>" + data[lendata].cellsArray[2]+"<p><b>Location:</b></p>"+data[lendata].cellsArray[3]+ "<p><b>Issue:</b></p>"+ data[lendata].cellsArray[4]+"<p><b>True Location on Map?:</b></p>"+ data[lendata].cellsArray[8] + "<p><b>Completed?:</b></p>"+ data[lendata].cellsArray[9]  ))
+                    } //add a new marker for each response thats marked as incomplete in red
+
+                    //Can comment this out if only want to see incomplete issues.
+                    // if response is marked as completed add a green marker
+                    
+                    else if (data[lendata].cellsArray[10] == 'Suggestion'){
+                        new mapboxgl.Marker({color:"orange"}).setLngLat([data[lendata].cellsArray[7], data[lendata].cellsArray[6]]).addTo(map).setPopup(new mapboxgl.Popup().setHTML("<p><b>Date + Time: </b></p>" + data[lendata].cellsArray[2]+"<p><b>Location:</b></p>"+data[lendata].cellsArray[3]+ "<p><b>Issue:</b></p>"+ data[lendata].cellsArray[4]+"<p><b>True Location on Map?:</b></p>"+ data[lendata].cellsArray[8] + "<p><b>Completed?:</b></p>"+ data[lendata].cellsArray[9]  ))
+                    }
+                    
+                    else{
+                        new mapboxgl.Marker({color:"red"}).setLngLat([data[lendata].cellsArray[7], data[lendata].cellsArray[6]]).addTo(map).setPopup(new mapboxgl.Popup().setHTML("<p><b>Date + Time: </b></p>" + data[lendata].cellsArray[2]+"<p><b>Location:</b></p>"+data[lendata].cellsArray[3]+ "<p><b>Issue:</b></p>"+ data[lendata].cellsArray[4]+"<p><b>True Location on Map?:</b></p>"+ data[lendata].cellsArray[8] + "<p><b>Completed?:</b></p>"+ data[lendata].cellsArray[9]  ))
+                    }
+                    lendata -= 1 //go to nect response
+                }
+                 
+            }
+
+        </script>
+    
+    </body>
+</html>
