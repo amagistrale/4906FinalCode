@@ -1,0 +1,65 @@
+body {
+    background-color: rgb(246,246,246);
+}
+
+#nav{
+    position: relative; 
+    top:0; 
+    right: 0; 
+    left: 0; 
+    padding: 32px 0px 32px 0px; 
+    border-bottom: 2px solid white; 
+    background-color: rgba(33, 37, 41, 1);
+}
+
+#image{
+    position: relative
+}
+
+#opbanner{
+    width:90px; 
+    height:130px; 
+    background-color:white; 
+    position:absolute; 
+    top: 8px; 
+    left: 30px;
+}
+
+#opimage{
+    margin: 18px 0px 0px 15px;
+}
+
+#hwriting{
+    color:#0475bc; 
+    margin: 15px 0px 15px 0px; 
+    font-family: Calibri, opensans, sans-serif; 
+    font-weight: 600; font-size: 2.5rem;
+}
+
+#writing{
+    font-family: Calibri, opensans, sans-serif; 
+    font-size: 1.1rem;
+}
+
+#line{
+    height:2px; 
+    border-width:0;
+    color:#0475bc; 
+    background-color:#0475bc
+}
+
+#map{
+    width:100%; 
+    min-height:700px
+}
+
+#carletonDiv{
+    width:170px; 
+    height:150px; 
+    top: 8px; 
+    left: 120px; 
+    float:right
+}
+#carletonImg{
+    margin: 0px 0px 0px 0px;
+}

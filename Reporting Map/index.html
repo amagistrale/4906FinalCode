@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html>
+    <head> <!--This section calls to other code as reference for both the functionality and the style of the webpage.-->
+        <meta charset = 'utf-8'>
+        <meta name = 'viewport' content = 'width = device-width, initial-scale = 1'>
+        <title>FPP Maintenance Reporting Tool</title>
+
+        <!--Stylesheet-->
+        <link rel = "stylesheet" href = '/Users/annamagistrale/Desktop/GEOM_4005/Cleaned Code/FPPReportingMapStyle.css'>
+
+        <!--for mapbox-->
+        <script src='https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css' rel='stylesheet' />
+        
+        <!--for sheetrock-->
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sheetrock/1.1.4/dist/sheetrock.min.js"></script> 
+    </head>
+
+    <body><!--This section creates the style combined with the Stylesheet referenced in the head. It is the contents of the webage.-->
+            <!--Much of the style was used from OntarioParks.ca to create a page that looks as professional as possible.-->
+
+        <!--Black "NavBar"-->
+        <div id = "nav">
+        </div>
+        <!--Large Picture-->
+        <div id = "image">
+        <img src = 'images/IMG_1805.jpg' width="100%" height="auto">
+        </div>
+
+        <!--OP Banner-->
+        <div  id = "opbanner" class="banner">
+        <img id = "opimage" src="https://www.ontarioparks.ca/images/svg/op-logo-vertical-colour.svg" width="60" height="100" alt="Ontario Parks Logo">
+        </div>
+     
+        <!--Add basemap-->
+        <!--This first section contains the text before adding the map-->
+        <div  class = 'div3'>
+            <h2 id = "hwriting">
+            Take a look at your issue on the map!
+            </h2>
+            
+            <p id = "writing">Thank you for taking the time to complete this form. Your contibution will assist staff in keeping Fitzroy beautiful while exploring the benefits of citizen science.</p>
+        </div>
+        <br>
+        <hr id = "line">
+        <br>
+
+        <!--This section creates the map that the user's inputted point will then be drawn on.-->
+        <div id = 'map' onload="draw"></div>
+            <script>
+                var token = 'pk.eyJ1IjoiYW1hZ2lzdHJhbGUiLCJhIjoiY2xyanM3bTQ5MDFqMjJqcHdtem1uZmk3aiJ9.OLS4djSvledebuYH2fLFSg'
+                mapboxgl.accessToken = token;
+                var map = new mapboxgl.Map({
+                    container: 'map', // container ID
+                    style: 'mapbox://styles/amagistrale/cltgq0i0f007301qo6xuz0yfa', // style URL
+                    center: [-76.221, 45.482], // starting position 
+                    zoom: 13.5, // starting zoom
+                });
+            </script>
+
+        <!--Sheetrock method to add the user submitted data to the map created above-->
+        <div id = 'display'></div>
+        <script>
+            var marker = new mapboxgl.Marker(); //create a new marker
+            sheetrock({
+                url: 'https://docs.google.com/spreadsheets/d/15XJHwzvbhwnOsn1EKw4tm8dfNjxnb9isd3Za6HbN-a0/edit#gid=645545594', //URL to google spreadsheet
+                callback: draw   }); //runs the draw function
+
+            function draw(error, options, response) { //This function draws the point based off the data submitted by the user.
+                data=response.rows; //get the responses
+                lendata = (data.length) - 1 //find the last response
+                marker.setLngLat([data[lendata].cellsArray[7], data[lendata].cellsArray[6]]).addTo(map) //Set the longitude and latitude of the point based off the last row
+                marker.setPopup(new mapboxgl.Popup() //create a pop-up with additional information about the point
+                .setHTML("<p><b>Issue:</b></p>"+ data[lendata].cellsArray[4]))        
+            }
+
+        </script>
+        <!--Bottom of the page with Carleton logo-->
+        <div id = "carletonDiv">
+            <img id = "carletonImg" src="images/B_Logo_H-RGBRedBlackonLight72_130821.png" width="170" height="100"  alt="Carleton University Logo">
+        </div>
+    </body>
+</html>
