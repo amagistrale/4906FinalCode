@@ -7,7 +7,7 @@
         <title>FPP Maintenance Reporting Tool</title>
         
         <!--Stylesheet-->
-        <link rel = "stylesheet" href = '/Users/annamagistrale/Desktop/GEOM_4005/Cleaned Code/FPPReportingStyle.css'>
+        <link rel = "stylesheet" href = 'Reporting Tool/FPPReportingStyle.css'>
 
         <!--for mapbox-->
         <script src='https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js'></script>
@@ -17,6 +17,8 @@
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sheetrock/1.1.4/dist/sheetrock.min.js"></script> 
         
+        <!--Config-->
+        <script src = 'Reporting Tool/config.js'></script>
        
     </head>
     <body> <!--This section creates the style combined with the Stylesheet referenced in the head. It is the contents of the webage.-->
@@ -26,7 +28,7 @@
         </div>
         <!--Large Picture-->
         <div id = 'image'>
-            <img src = 'images/IMG_8400.jpg' alt = "A snapping turtle with moss on it's back." width = "100%" height = "auto">
+            <img src = 'Reporting Tool/Images/IMG_8400.jpg' alt = "A snapping turtle with moss on it's back." width = "100%" height = "auto">
         </div>
          <!--OP Banner-->
         <div  class="banner" id = 'opbanner'>
@@ -107,7 +109,7 @@
         </div>
         <!--Add image-->
         <div id = 'carletondiv'>
-            <img id = 'carletonimg' src="images/B_Logo_H-RGBRedBlackonLight72_130821.png" width="170" height="100"  alt="Carleton University Logo">
+            <img id = 'carletonimg' src="Reporting Tool/Images/B_Logo_H-RGBRedBlackonLight72_130821.png" width="170" height="100"  alt="Carleton University Logo">
         </div>
 
         <!--This next section moves into the script needed to make the webpage dynamic-->
@@ -161,12 +163,12 @@
 
             //The redirect function sends users to the next page
             function redirect(){
-                var website = "https://amagistrale.github.io/FPPReportingMap/"
+                var website = config.website
                 window.location.href = website
             }
           
             //This link refers to a Google AppsScript that sends the information in the form to a google sheet
-            var scriptURL = 'https://script.google.com/macros/s/AKfycbw1gX038umY60MWeO8K02Fx4QKiIqrzc8yLYe3ZMcF-e1TaPEspx3Y_gCI8loBPKRPK/exec'
+            var scriptURL = config.script
             const form = document.forms['submit-to-google-sheet']
             
             //This event listener is activated when the form is submitted.
