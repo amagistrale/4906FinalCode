@@ -1,0 +1,50 @@
+// Original code from https://github.com/jamiewilson/form-to-google-sheets; Mail:  https://stackoverflow.com/questions/58405253/triggering-mail-sending-on-html-form-submit-using-google-apps-script
+// Updated for 2021 and ES6 standards
+
+const sheetName = 'Reporting'
+const scriptProp = PropertiesService.getScriptProperties()
+
+function initialSetup () {
+  const activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet()
+  scriptProp.setProperty('key', activeSpreadsheet.getId())
+
+}
+
+function doPost (e) {
+  
+  const lock = LockService.getScriptLock()
+  lock.tryLock(10000)
+
+  try {
+    const doc = SpreadsheetApp.openById(scriptProp.getProperty('key'))
+    const sheet = doc.getSheetByName(sheetName)
+
+    const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0]
+    const nextRow = sheet.getLastRow() + 1
+
+    const newRow = headers.map(function(header) {
+      return header === 'Date' ? new Date() : e.parameter[header]
+    }
+    )
+
+    sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow])
+
+    MailApp.sendEmail('josie.grenier@ontario.ca','New Entry', 'Hello, This email is to inform you of a new entry to the Maintenance Reporting system. Take a look at: https://docs.google.com/spreadsheets/d/15XJHwzvbhwnOsn1EKw4tm8dfNjxnb9isd3Za6HbN-a0/edit?pli=1&gid=645545594#gid=645545594', {cc: 'taylor.bonell@ontario.ca', bcc: 'ivan.weir@ontario.ca'});
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ 'result': 'success', 'row': nextRow }))
+      .setMimeType(ContentService.MimeType.JSON)
+  }
+
+  catch (e) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ 'result': 'error', 'error': e }))
+      .setMimeType(ContentService.MimeType.JSON)
+  }
+
+  finally {
+    lock.releaseLock()
+  }
+  
+
+}
