@@ -19,7 +19,7 @@ All of the paths to stylesheet, images and link to next webpage reflect the path
 <br>
 The Reporting Map is the final page of the website and displays the users submitted reponse from the Reporting Tool on a map. This also comes with a config file to easily change some of the variables. A few things to note:
 <ul>
-  <li>When setting longitude and latitude of the marker, the index nubers will need to change depending on where these values are located in your spreadsheet (ie. in this spreadsheet long is located in column 7 and lat is located in column 6.)</li>
+  <li>When setting longitude and latitude of the marker, the index numbers will need to change depending on where these values are located in your spreadsheet (ie. in this spreadsheet long is located in column 7 and lat is located in column 6.)</li>
   <li>This is the same when editing what is shown in the pop-up for the marker. Index values need to be adjusted according to the spreadsheet.</li>
 </ul>
 
@@ -34,7 +34,7 @@ https://github.com/jamiewilson/form-to-google-sheets
 
 <b>Map For Staff</b>
 <br>
-This folder contains an html file that shows the open source version of the mapbox map for staff to use. It can be opened by itself. It is currently filtered to only show incompleted issues but this can be changed by editing lines 48 and 49. The pop-up can also be edited to show different things.
+This folder contains an html file that shows the open source version of the mapbox map for staff to use. It can be opened by itself. It is currently filtered to only show incompleted issues but this can be changed by editing lines 48 and 49. The pop-up can also be edited to show different attributes.
 
 <b>Analysis</b>
 <br>
