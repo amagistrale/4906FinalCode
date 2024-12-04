@@ -7,7 +7,7 @@
         <title>FPP Maintenance Reporting Tool</title>
 
         <!--Stylesheet-->
-        <link rel = "stylesheet" href = '/Users/annamagistrale/Desktop/GEOM_4005/Cleaned Code/FPPReportingMapStyle.css'>
+        <link rel = "stylesheet" href = 'Reporting Map/FPPReportingMapStyle.css'>
 
         <!--for mapbox-->
         <script src='https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js'></script>
@@ -16,6 +16,10 @@
         <!--for sheetrock-->
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sheetrock/1.1.4/dist/sheetrock.min.js"></script> 
+
+        <!--Config-->
+        <script src = 'Reporting Map/config.js'></script>
+
     </head>
 
     <body><!--This section creates the style combined with the Stylesheet referenced in the head. It is the contents of the webage.-->
@@ -26,7 +30,7 @@
         </div>
         <!--Large Picture-->
         <div id = "image">
-        <img src = 'images/IMG_1805.jpg' width="100%" height="auto">
+        <img src = 'Reporting Map/Images/IMG_1805.jpg' width="100%" height="auto">
         </div>
 
         <!--OP Banner-->
@@ -50,13 +54,13 @@
         <!--This section creates the map that the user's inputted point will then be drawn on.-->
         <div id = 'map' onload="draw"></div>
             <script>
-                var token = 'pk.eyJ1IjoiYW1hZ2lzdHJhbGUiLCJhIjoiY2xyanM3bTQ5MDFqMjJqcHdtem1uZmk3aiJ9.OLS4djSvledebuYH2fLFSg'
+                var token = config.token
                 mapboxgl.accessToken = token;
                 var map = new mapboxgl.Map({
                     container: 'map', // container ID
-                    style: 'mapbox://styles/amagistrale/cltgq0i0f007301qo6xuz0yfa', // style URL
-                    center: [-76.221, 45.482], // starting position 
-                    zoom: 13.5, // starting zoom
+                    style: config.style, // style URL
+                    center: config.center, // starting position 
+                    zoom: config.zoom, // starting zoom
                 });
             </script>
 
@@ -65,7 +69,7 @@
         <script>
             var marker = new mapboxgl.Marker(); //create a new marker
             sheetrock({
-                url: 'https://docs.google.com/spreadsheets/d/15XJHwzvbhwnOsn1EKw4tm8dfNjxnb9isd3Za6HbN-a0/edit#gid=645545594', //URL to google spreadsheet
+                url: config.sheeturl, //URL to google spreadsheet
                 callback: draw   }); //runs the draw function
 
             function draw(error, options, response) { //This function draws the point based off the data submitted by the user.
@@ -79,7 +83,7 @@
         </script>
         <!--Bottom of the page with Carleton logo-->
         <div id = "carletonDiv">
-            <img id = "carletonImg" src="images/B_Logo_H-RGBRedBlackonLight72_130821.png" width="170" height="100"  alt="Carleton University Logo">
+            <img id = "carletonImg" src="Reporting Map/Images/B_Logo_H-RGBRedBlackonLight72_130821.png" width="170" height="100"  alt="Carleton University Logo">
         </div>
     </body>
 </html>
