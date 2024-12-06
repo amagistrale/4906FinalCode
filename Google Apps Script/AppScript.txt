@@ -29,7 +29,7 @@ function doPost (e) {
 
     sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow])
 
-    MailApp.sendEmail('josie.grenier@ontario.ca','New Entry', 'Hello, This email is to inform you of a new entry to the Maintenance Reporting system. Take a look at: https://docs.google.com/spreadsheets/d/15XJHwzvbhwnOsn1EKw4tm8dfNjxnb9isd3Za6HbN-a0/edit?pli=1&gid=645545594#gid=645545594', {cc: 'taylor.bonell@ontario.ca', bcc: 'ivan.weir@ontario.ca'});
+    MailApp.sendEmail('placeholder@email.com','New Entry', 'Hello, This email is to inform you of a new entry to the Maintenance Reporting system. Take a look at: https://docs.google.com/spreadsheets/d/15XJHwzvbhwnOsn1EKw4tm8dfNjxnb9isd3Za6HbN-a0/edit?pli=1&gid=645545594#gid=645545594', {cc: 'placeholder@email.com', bcc: 'placeholder@email.com'});
 
     return ContentService
       .createTextOutput(JSON.stringify({ 'result': 'success', 'row': nextRow }))
